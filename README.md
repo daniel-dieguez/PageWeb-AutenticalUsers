@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+# User Authentication System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+This project is an authentication system built with Java Spring Boot and MySQL. It allows users to log in to view data securely. New users can also be created to gain access to view and manage the data.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **User Authentication**: Secure login and logout functionality.
+- **Data Access**: Authenticated users can view all data in the system.
+- **User Creation**: Allows creating new user accounts with access permissions.
+- **Data Management**: Users with access can view and interact with the available data.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Requirements
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Java**: JDK 11 or higher
+- **Spring Boot**: Version 2.5 or higher
+- **MySQL**: Version 5.7 or higher
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Clone this repository** to your local machine:
 
-### `npm run build`
+    ```bash
+    git clone https://github.com/your-username/your-repo-name.git
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Navigate to the project directory**:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ```bash
+    cd your-repo-name
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. **Configure the database**:
+    - Create a MySQL database .
+    - Update the database configuration in `src/main/resources/application.properties`:
 
-### `npm run eject`
+    ```properties
+    spring.datasource.url=jdbc:mysql://localhost:3306/auth_system_db
+    spring.datasource.username=your_mysql_username
+    spring.datasource.password=your_mysql_password
+    spring.jpa.hibernate.ddl-auto=update
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. **Build the project**:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    ```bash
+    ./mvnw clean install
+    ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Usage
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. **Run the Spring Boot Application**:
 
-## Learn More
+    ```bash
+    ./mvnw spring-boot:run
+    ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. **Access the application**:
+    - The API will be available at `http://localhost:`.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. **Endpoints**:
+    - `POST /auth/register`: Register a new user.
+    - `POST /auth/login`: Log in with existing user credentials.
+    - `GET /data`: Access the main data (authenticated users only).
 
-### Code Splitting
+## Technologies Used
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **Java Spring Boot**: Backend framework for building the authentication system.
+- **MySQL**: Database to store user credentials and data securely.
+- **Maven**: Dependency management and build tool.
 
-### Analyzing the Bundle Size
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
