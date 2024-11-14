@@ -24,7 +24,7 @@ fetch(URLLogin, {
   body: new URLSearchParams({
     email: email,
     password: passwordUser
-    
+
   }).toString(),
 }).then((response) => {
   if (response.ok) {
@@ -46,7 +46,7 @@ fetch(URLLogin, {
 
 
   return (
-    <div>
+    
 
       <div className={styles.container}>
         <form onSubmit={hanleForm} className={styles.form}>
@@ -77,6 +77,5 @@ fetch(URLLogin, {
       </div>
 
 
-    </div>
   )
 }

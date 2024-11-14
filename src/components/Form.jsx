@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styles from '../css/form.module.css'
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 
@@ -9,14 +10,16 @@ export default function Form() {
   const [nameUser, setName] = useState('');
   const [emailUser, setEmail] = useState('');
   const [passwordUser, setPassword] = useState('');
-  const [role, setRole] = useState('');
+  const [roleUser, setRole] = useState('');
+
+
 
   const handleNewUser = (e) =>{
     e.preventDefault();
     sendData();
     console.log("datos enviados");
     
-    console.log(nameUser, emailUser,passwordUser,role);
+    console.log(nameUser, emailUser,passwordUser,roleUser);
 
 
   }
@@ -30,22 +33,29 @@ console.log("precionaste regresar")
     const data = {
       name: nameUser,
       email: emailUser,
-      password: passwordUser ,
-      roleId: Number(role)
-    }
+      password: passwordUser,
+      roleId: roleUser ? Number(roleUser) : 1,
+    };
+    
 
-    const URLPost = 'http://localhost:9000/new/CreateUser';
+
+    const URLPost = `http://localhost:9000/new/CreateUser`;
   fetch(URLPost, {
     method: 'POST',
-    credentials: "include", // Incluye las credenciales
+    credentials: 'include', // Incluye las credenciales
     body: JSON.stringify(data),
     headers: { 'Content-Type': 'application/json' },
   })
   .then((data) => {
     if (data.status === 201) {
         console.log("Usuario registrado con éxito");
+        console.log("data sent", data);
     } else {
-        console.log("Error: " + JSON.stringify(data.body));
+        console.log("Error algo paso pero casi bro: " + JSON.stringify(data.body));
+        console.log("nombre", nameUser);
+        console.log(emailUser);
+        console.log(passwordUser);
+        console.log(roleUser);
     }
 })
   .catch((error) => {
@@ -55,8 +65,6 @@ console.log("precionaste regresar")
 
 
   }
-
-
 
   return (
     <div className={styles.container}>
@@ -94,11 +102,11 @@ console.log("precionaste regresar")
           required
         />
 
-        <label className={styles.label} htmlFor="role">Role:</label>
+        <label className={styles.label} htmlFor="roleUser">Role:</label>
         <select
           className={styles.select}
-          value={role}
-          onChange={(e) => setRole(Number(e.target.value))}
+          value={roleUser}
+          onChange={(e) => {setRole(Number(e.target.value))}}
         >
           <option value="1">ADMIN</option>
           <option value="2">USER</option>
